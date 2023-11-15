@@ -2,10 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsNotEmpty, IsEmail, IsNumber, IsDate } from 'class-validator';
 import { HydratedDocument } from 'mongoose';
 
-export type AuthDocument = HydratedDocument<Auth>;
+export type EmailAuthCodeDocument = HydratedDocument<EmailAuthCode>;
 
 @Schema()
-export class Auth {
+export class EmailAuthCode {
   @Prop({ unique: true })
   @IsNotEmpty()
   @IsEmail()
@@ -14,7 +14,7 @@ export class Auth {
   @Prop()
   @IsNotEmpty()
   @IsNumber()
-  authCode: number;
+  EmailAuthCodeCode: number;
 
   @Prop({ type: Date, expires: 300, default: Date.now() })
   @IsNotEmpty()
@@ -22,4 +22,4 @@ export class Auth {
   createDate: Date;
 }
 
-export const AuthSchema = SchemaFactory.createForClass(Auth);
+export const EmailAuthCodeSchema = SchemaFactory.createForClass(EmailAuthCode);
