@@ -1,12 +1,23 @@
 import { Expose } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsBoolean, IsEmail, IsNotEmpty, IsNumber } from 'class-validator';
 
+//Params
 export class SendAuthMailParams {
   @IsEmail()
   @IsNotEmpty()
   email: string;
 }
 
+export class PostCheckAuthParams {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsNotEmpty()
+  authCode: number;
+}
+
+// DTO
 export class AuthMailInfoDTO {
   @Expose()
   @IsEmail()
@@ -20,5 +31,16 @@ export class AuthMailInfoDTO {
 
   constructor(partital: Partial<AuthMailInfoDTO>) {
     Object.assign(this, partital);
+  }
+}
+
+// DTO
+export class CheckAuthCodeDTO {
+  @IsNotEmpty()
+  @IsBoolean()
+  result: boolean;
+
+  constructor(result) {
+    this.result = result;
   }
 }

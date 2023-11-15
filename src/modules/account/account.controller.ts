@@ -5,16 +5,18 @@ import {
   Body,
   Patch,
   Delete,
+  Session,
 } from '@nestjs/common';
 import { AccountService } from './account.service';
-import { SignUpDTO } from './dto/account.dto';
+import { SignUpParams } from './dto/account.dto';
+import { Redis } from 'ioredis';
 
 @Controller('account')
 export class AccountController {
   constructor(private readonly accountService: AccountService) {}
 
-  @Post()
-  signUp(@Body() params: SignUpDTO) {
-    this.accountService.signup();
+  @Post('/signup')
+  postSignUp(@Body() params: SignUpParams) {
+    return this.accountService.signup(params);
   }
 }
