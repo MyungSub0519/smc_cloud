@@ -14,3 +14,11 @@ export class SignUpParams {
   @IsNotEmpty()
   name: string;
 }
+
+export class SignInParams {
+  @IsNotEmpty()
+  id: string;
+
+  @IsNotEmpty()
+  password: string;
+}

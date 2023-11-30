@@ -17,6 +17,14 @@ export class PostCheckAuthParams {
   authCode: number;
 }
 
+export class PostGenerateTokenParams {
+  @IsNotEmpty()
+  id: string;
+
+  @IsNotEmpty()
+  refreshToken: string;
+}
+
 // DTO
 export class AuthMailInfoDTO {
   @Expose()
@@ -34,7 +42,6 @@ export class AuthMailInfoDTO {
   }
 }
 
-// DTO
 export class CheckAuthCodeDTO {
   @IsNotEmpty()
   @IsBoolean()
